@@ -1,7 +1,4 @@
-require "ruboty/timeline/version"
+require 'ruboty/timeline/version'
+require 'ruboty/timeline/actions/say'
+require 'ruboty/handlers/timeline'
 
-module Ruboty
-  module Timeline
-    # Your code goes here...
-  end
-end
