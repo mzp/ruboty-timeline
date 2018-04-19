@@ -12,7 +12,7 @@ module Ruboty
         end
 
         def call
-          if room =~ /current/
+          if room =~ /current_(?!all$).+/
             notifier.ping "#{body}\n(\##{room})", username: from, icon_url: icon(from), link_names: true
           end
         end
@@ -28,7 +28,15 @@ module Ruboty
         end
 
         def room
-          message.from.gsub(/@.*$/, '')
+          channels.find { |channel| channel['id'] == message.from }['name']
+        end
+
+        def channels
+          @channels ||= JSON.parse(open(api_channels_list).read)['channels']
+        end
+
+        def api_channels_list
+          "https://slack.com/api/channels.list?token=#{ENV['RUBOTY_TIMELINE_TOKEN']}"
         end
 
         def notifier
