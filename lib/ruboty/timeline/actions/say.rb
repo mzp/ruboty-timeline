@@ -36,7 +36,7 @@ module Ruboty
         end
 
         def api_channels_list
-          "https://slack.com/api/channels.list?token=#{ENV['RUBOTY_TIMELINE_TOKEN']}"
+          "https://slack.com/api/users.conversations?token=#{ENV['RUBOTY_TIMELINE_TOKEN']}"
         end
 
         def notifier
